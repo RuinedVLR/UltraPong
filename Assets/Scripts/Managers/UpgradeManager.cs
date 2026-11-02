@@ -5,9 +5,10 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
 
-    //[SerializeField] private Player player;
-    //[SerializeField] private BallManager ballManager;
-    //[SerializeField] private Paddle paddle;
+    [SerializeField] private Player player;
+    [SerializeField] private BallManager ballManager;
+    [SerializeField] private Paddle paddle;
+    [SerializeField] private UpgradePanel upgradePanel;
 
     [SerializeField] private List<RaritySettings> raritySettings;
 
@@ -23,12 +24,22 @@ public class UpgradeManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        //context = new UpgradeContext
-        //{
-        //    Player = player,
-        //    BallManager = ballManager,
-        //    Paddle = paddle
-        //};
+        context = new UpgradeContext
+        {
+            Player = player,
+            BallManager = ballManager,
+            Paddle = paddle
+        };
+    }
+
+    private void Start()
+    {
+        ChooseUpgrades();
+    }
+
+    public void ChooseUpgrades()
+    {
+        upgradePanel.Show();
     }
 
     public RaritySettings GetRaritySettings(UpgradeRarity rarity)
