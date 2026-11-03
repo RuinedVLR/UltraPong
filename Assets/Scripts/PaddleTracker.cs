@@ -4,7 +4,7 @@ public class PaddleTracker : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private float distanceFromCamera = 10f;
+    private float distanceFromCamera = 7f;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
