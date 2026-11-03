@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
+    private Transform posA;
+    private Transform posB;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +14,14 @@ public class EnemyProjectile : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void MoveTowardsPlayer()
+    {
+
+    }
+    public void MoveTowardsEnemy()
+    {
+
     }
 }
