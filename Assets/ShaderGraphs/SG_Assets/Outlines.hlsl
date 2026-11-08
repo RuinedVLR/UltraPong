@@ -6,7 +6,7 @@ struct ScharrOperators {
 ScharrOperators GetEdgeDetectionKernels() {
 	ScharrOperators kernels;
 	kernels.x = float3x3(-3, -10, -3, 0, 0, 0, 3, 10, 3);
-	kernels.y = float3x3(-3, 0, -3, 10, 0, -10, 3, 0 ,0);
+	kernels.y = float3x3(-3, 0, -3, 10, 0, -10, 3, 0 ,3);
 	return kernels;
 }
 
@@ -36,7 +36,7 @@ void NormalBasedOutlines_float(float2 ScreenUV, float2 px, out float Outlines) {
 	ScharrOperators kernels = GetEdgeDetectionKernels();
 	float gx = 0;
 	float gy = 0;
-	float3 cn = SampleSceneNormals(ScreenUV)
+	float3 cn = SampleSceneNormals(ScreenUV);
 	for(int i = -1; i <= 1; i++) {
 		for(int j = -1; j <= 1; j++) {
 			if(i == 0 && j == 0) continue;
