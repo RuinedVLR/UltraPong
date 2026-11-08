@@ -21,6 +21,7 @@ public class PaddleTracker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // paddle tracks mouse position
         Vector3 mouseScreenPos = Input.mousePosition;
 
         mouseScreenPos.z = distanceFromCamera;
@@ -31,6 +32,7 @@ public class PaddleTracker : MonoBehaviour
 
         if(isClickable == true && Input.GetMouseButton(0))
         {
+            // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
             enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
             Debug.Log("clicked");
             isClickable = false;
@@ -45,7 +47,7 @@ public class PaddleTracker : MonoBehaviour
     {
 
         Debug.Log("within range");
-
+        // checks if ball can be hit
         isClickable = true;
 
     }

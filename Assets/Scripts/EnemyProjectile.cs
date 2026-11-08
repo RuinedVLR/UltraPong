@@ -3,16 +3,25 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
+    //collection of positions that will be randomly selected depending on which state the rally is in
     public Transform[] enemyPoint;
     public Transform[] playerPoint;
     public Transform[] screenPoint;
     public Transform targetPoint;
+
+    // the currently randomly selected number that correlates to a position in the list
     public int selectedPoint;
+
+    // state bools could probably use a state manager
     public bool movingToPlayer = false;
     public bool movingToScreen = false;
     public bool movingToEnemy = false;
+
+    
     public Transform enemyPos;
     public GameObject ball;
+
+    //speed float could incrimentally increase as rally continues
     public float speed = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,7 +63,7 @@ public class EnemyProjectile : MonoBehaviour
     }
     public void MoveTowardsEnemy()
     {
-        
+        // moves ball towards point on players side of the table before returning to the enemies position
         ball.transform.position = Vector3.MoveTowards(ball.transform.position, targetPoint.position, speed * Time.deltaTime);
         if(Vector3.Distance(ball.transform.position, playerPoint[selectedPoint].position) <= 0.2f)
         {
@@ -72,6 +81,7 @@ public class EnemyProjectile : MonoBehaviour
 
     public void MoveTowardsScreen()
     {
+        // moves towards screen where player would either hit or miss the ball
         ball.transform.position = Vector3.MoveTowards(ball.transform.position, screenPoint[selectedPoint].position, speed * Time.deltaTime);
         if(Vector3.Distance(ball.transform.position, screenPoint[selectedPoint].position) <= 0.2f)
         {
@@ -80,6 +90,7 @@ public class EnemyProjectile : MonoBehaviour
     }
     public void OnRallyStart()
     {
+        //placeholder method to start rally 
         selectedPoint = Random.Range(0, enemyPoint.Length);
         movingToPlayer = true;
         
