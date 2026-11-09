@@ -78,7 +78,7 @@ public class EnemyProjectile : MonoBehaviour
         if(Vector3.Distance(ball.transform.position, enemyPos.position) <= 0.2f)
         {
             roundsGone += 1;
-            enemyMissChance = roundsGone + ((int)speed) / 2;
+            enemyMissChance = roundsGone * ((int)speed) / 2;
             if(enemyMissChance >= 100)
             {
                 enemyMissChance = 100;
