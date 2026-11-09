@@ -74,6 +74,7 @@ public class EnemyProjectile : MonoBehaviour
             movingToEnemy = false;
             movingToScreen = false;
             movingToPlayer = true;
+            speed += 1;
         }
 
   
