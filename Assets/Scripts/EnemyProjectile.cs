@@ -24,6 +24,12 @@ public class EnemyProjectile : MonoBehaviour
     //speed float could incrimentally increase as rally continues
     public float speed = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [SerializeField]private int enemyMissChance = 0;
+    [SerializeField]private int missedNum;
+
+    private int roundsGone;
+    
     void Start()
     {
         
@@ -71,10 +77,25 @@ public class EnemyProjectile : MonoBehaviour
         }
         if(Vector3.Distance(ball.transform.position, enemyPos.position) <= 0.2f)
         {
+            roundsGone += 1;
+            enemyMissChance = roundsGone + ((int)speed) / 2;
+            if(enemyMissChance >= 100)
+            {
+                enemyMissChance = 100;
+            }
+            missedNum = Random.Range(enemyMissChance, 101);
+
+            if(missedNum == enemyMissChance)
+            {
+                // rally win score multi here, start new rally
+                return;
+            }
+            else
             movingToEnemy = false;
             movingToScreen = false;
             movingToPlayer = true;
-            speed += 1;
+            speed += 1.2f;
+            
         }
 
   
