@@ -113,8 +113,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GroundDistance: 0.1
-    - _HorizonBlend: 1
+    - _GroundDistance: 0.55
+    - _HorizonBlend: 1.51
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
