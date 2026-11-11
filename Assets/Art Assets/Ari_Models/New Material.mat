@@ -110,9 +110,7 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CrossHatchFade_Max: 0.71
-    - _CrossHatchFade_Min: 0.7
-    - _Crossdensity: 28.28
+    - _CrossHatchingFade_1: 16
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -123,9 +121,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HatchFade_Max: 0.45
-    - _HatchFade_Min: 0.4
-    - _HatchingSoftness: 0.2
+    - _HatchingFade: 39.1
+    - _HatchingNoise: 0.4
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
