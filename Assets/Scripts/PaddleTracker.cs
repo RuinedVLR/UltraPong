@@ -6,7 +6,7 @@ public class PaddleTracker : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private float distanceFromCamera = 7f;
+    private float distanceFromCamera = 0.8f;
     public GameObject ball;
     [SerializeField] private EnemyProjectile enemyProjectile;
     private bool isClickable;
