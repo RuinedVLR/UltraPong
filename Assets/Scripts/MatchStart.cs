@@ -29,8 +29,10 @@ public class MatchStart : MonoBehaviour
         countText.text = countInt.ToString();
     }
 
-     private IEnumerator WaitForStart()
+     public IEnumerator WaitForStart()
     {
+        countText.enabled = true;
+        countFloat = 4f;
         yield return new WaitForSeconds(3);
 
         countText.text = "GO";

@@ -23,16 +23,24 @@ public class EnemyProjectile : MonoBehaviour
 
     //speed float could incrimentally increase as rally continues
     public float speed = 10f;
+
+    public float baseSpeed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField]private int enemyMissChance = 0;
     [SerializeField]private int missedNum;
 
     private int roundsGone;
-    
+
+    private GameManager gameManager;
+
+    private MatchStart matchStart;
     void Start()
     {
-        
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        matchStart = GameObject.Find("GameManager").GetComponent<MatchStart>();
+
+        speed = baseSpeed;
     }
 
     // Update is called once per frame
@@ -50,6 +58,8 @@ public class EnemyProjectile : MonoBehaviour
         {
             MoveTowardsScreen();
         }
+
+
     }
 
     public void MoveTowardsPlayer()
@@ -94,7 +104,7 @@ public class EnemyProjectile : MonoBehaviour
             movingToEnemy = false;
             movingToScreen = false;
             movingToPlayer = true;
-            speed += 1.2f;
+            speed += .2f;
             
         }
 
@@ -107,7 +117,13 @@ public class EnemyProjectile : MonoBehaviour
         ball.transform.position = Vector3.MoveTowards(ball.transform.position, screenPoint[selectedPoint].position, speed * Time.deltaTime);
         if(Vector3.Distance(ball.transform.position, screenPoint[selectedPoint].position) <= 0.2f)
         {
-            //fail state here
+            gameManager.lives -= 1;
+            speed = baseSpeed;
+            ball.transform.position = enemyPos.position;
+            movingToEnemy = false;
+            movingToPlayer = false;
+            movingToScreen = false;
+            matchStart.StartCoroutine(matchStart.WaitForStart());
         }
     }
     public void OnRallyStart()
