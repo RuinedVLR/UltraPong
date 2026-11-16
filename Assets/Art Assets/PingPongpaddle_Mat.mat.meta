@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Art Assets/PingPongpaddle_Mat.mat.meta
 guid: 02c1006cdff0d644f9f7d7e9da73fec9
+========
+guid: 126190b87fa3f7c4d97069e933ed8104
+>>>>>>>> 31510b7 (Updated Prefabs):Assets/Art Assets/gf.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

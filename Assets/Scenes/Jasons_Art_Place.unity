@@ -2557,6 +2557,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8722193428291928620, guid: 0d027e3469133374b81d2753c79a01da, type: 3}
+      propertyPath: m_Name
+      value: PingPongTable_Var2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

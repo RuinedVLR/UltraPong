@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Environment/Island.prefab.meta
 guid: ce2d244540f743b4d8555dfeaf355790
+========
+guid: 0d027e3469133374b81d2753c79a01da
+>>>>>>>> 31510b7 (Updated Prefabs):Assets/Prefabs/PingPongSets/PingPongTable_Var2.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
