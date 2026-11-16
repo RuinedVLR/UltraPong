@@ -318,6 +318,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82319781}
   m_CullTransparentMesh: 1
+
 --- !u!1001 &267565648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -509,6 +510,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
+
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -632,7 +634,7 @@ RectTransform:
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &470638966
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+ m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -712,6 +714,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 470638964}
   m_CullTransparentMesh: 1
+
 --- !u!1001 &568210375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1369,6 +1372,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813624680}
   m_CullTransparentMesh: 1
+
 --- !u!1001 &1011105343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1552,6 +1556,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1192180946}
   m_CullTransparentMesh: 1
+
 --- !u!1001 &1228371176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1751,6 +1756,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483503201}
   m_CullTransparentMesh: 1
+
 --- !u!1 &1494575457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1982,6 +1988,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+
 --- !u!1001 &1696594373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2230,6 +2237,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1893591147}
   m_CullTransparentMesh: 1
+
 --- !u!1 &2034780766
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,6 +2312,7 @@ RectTransform:
   m_AnchoredPosition: {x: -584.7643, y: -174.64488}
   m_SizeDelta: {x: 658.2814, y: 608.0579}
   m_Pivot: {x: 0.5, y: 0.5}
+
 --- !u!1001 &2098208626
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2524,6 +2533,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de0da7cb35fd15f46bd0f1b1520a5550, type: 3}
+
 --- !u!1001 &215703595379981353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2746,6 +2756,7 @@ PrefabInstance:
     - target: {fileID: 1635865992651595724, guid: 964e133877dc3fd4ca48320583dfaa60, type: 3}
       propertyPath: m_LocalPosition.z
       value: -8.71
+
       objectReference: {fileID: 0}
     - target: {fileID: 1635865992651595724, guid: 964e133877dc3fd4ca48320583dfaa60, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2779,6 +2790,7 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+
     - target: {fileID: 9085072442277677004, guid: 964e133877dc3fd4ca48320583dfaa60, type: 3}
       propertyPath: m_Name
       value: PingPongTable_Green
@@ -2854,6 +2866,7 @@ Transform:
   m_LocalPosition: {x: 0.68000007, y: -4.32, z: -8.71}
   m_LocalScale: {x: 4.28, y: 4.28, z: 4.28}
   m_ConstrainProportionsScale: 1
+
   m_Children:
   - {fileID: 4762883493015180533}
   - {fileID: 68878631}
@@ -2943,6 +2956,7 @@ PrefabInstance:
     - target: {fileID: 5494054374121802540, guid: 9c2de3e6a40f53144b9f92f472a1c35f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -31.805
+
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3018,6 +3032,7 @@ Transform:
   m_LocalPosition: {x: 0.68, y: -4.32, z: -8.71}
   m_LocalScale: {x: 4.28, y: 4.28, z: 4.28}
   m_ConstrainProportionsScale: 1
+
   m_Children:
   - {fileID: 2034780767}
   - {fileID: 7339283823834909798}
@@ -3203,6 +3218,7 @@ PrefabInstance:
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.442
+
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3236,6 +3252,7 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+
     - target: {fileID: 9186523170483659859, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_Name
       value: PingPongBall_Var1
@@ -3428,3 +3445,4 @@ SceneRoots:
   - {fileID: 1789250610}
   - {fileID: 1654772659}
   - {fileID: 48821208579420875}
+
