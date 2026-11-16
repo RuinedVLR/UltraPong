@@ -30,7 +30,7 @@ public class PaddleTracker : MonoBehaviour
 
         transform.position = mouseWorldPos;
 
-        if(isClickable == true && Input.GetMouseButton(0))
+        if(isClickable == true && Input.GetMouseButtonDown(0))
         {
             // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
             enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
