@@ -3056,6 +3056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PingPongPaddle_Var1
       objectReference: {fileID: 0}
+    - target: {fileID: 1519190620885231927, guid: 9c2de3e6a40f53144b9f92f472a1c35f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 02c1006cdff0d644f9f7d7e9da73fec9, type: 2}
     - target: {fileID: 5494054374121802540, guid: 9c2de3e6a40f53144b9f92f472a1c35f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
