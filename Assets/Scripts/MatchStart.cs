@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MatchStart : MonoBehaviour
 {
-    private EnemyProjectile enemyProjectile;
+    private BallManager enemyProjectile;
     public TextMeshProUGUI countText;
     public float countFloat = 4f;
     private int countInt;
@@ -15,7 +15,7 @@ public class MatchStart : MonoBehaviour
     private void Start()
     {
         if (gameObject != null) DontDestroyOnLoad(gameObject);
-        enemyProjectile = GameObject.Find("Enemy").GetComponent<EnemyProjectile>();
+        enemyProjectile = GameObject.Find("Enemy").GetComponent<BallManager>();
 
         StartCoroutine(WaitForStart());
     }
