@@ -6,7 +6,7 @@ public class PaddleTracker : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    private float distanceFromCamera = 7f;
+    private float distanceFromCamera = 0.8f;
     public GameObject ball;
     [SerializeField] private EnemyProjectile enemyProjectile;
     private bool isClickable;
@@ -30,7 +30,7 @@ public class PaddleTracker : MonoBehaviour
 
         transform.position = mouseWorldPos;
 
-        if(isClickable == true && Input.GetMouseButton(0))
+        if(isClickable == true && Input.GetMouseButtonDown(0))
         {
             // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
             enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
