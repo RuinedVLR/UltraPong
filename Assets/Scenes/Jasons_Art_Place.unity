@@ -1375,7 +1375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1194524750
 Transform:
   m_ObjectHideFlags: 0
@@ -1390,6 +1390,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7702157780722202438}
+  - {fileID: 2812160128870342158}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1228371176
@@ -1784,13 +1785,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494575457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.32374436, y: -0.5825634, z: 0.27165374, w: 0.6942721}
+  m_LocalRotation: {x: 0.4016365, y: -0.28201944, z: 0.13150781, w: 0.8613123}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -80, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -36.26, z: 0}
 --- !u!1001 &1538937599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2207,7 +2208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2137776774
 Transform:
   m_ObjectHideFlags: 0
@@ -2758,8 +2759,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3192238567101629620}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.09276, y: 0, z: 0.51069}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2784,7 +2785,7 @@ Transform:
   - {fileID: 460049780}
   - {fileID: 672724498}
   - {fileID: 1940449688}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1194524750}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3192238567101629620
 GameObject:
@@ -3718,4 +3719,3 @@ SceneRoots:
   - {fileID: 1494575460}
   - {fileID: 2137776774}
   - {fileID: 1194524750}
-  - {fileID: 2812160128870342158}
