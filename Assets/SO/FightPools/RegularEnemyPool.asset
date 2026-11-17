@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RegularEnemyPool
   m_EditorClassIdentifier: Assembly-CSharp::Map.ScenePool
   sceneNames:
-  - RegularEnemy1
-  - RegularEnemy2
-  - RegularEnemy3
-  - RegularEnemy4
+  - Enemy1
+  - Enemy2
+  - Enemy3
+  - Enemy4
