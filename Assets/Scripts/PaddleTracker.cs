@@ -8,14 +8,14 @@ public class PaddleTracker : MonoBehaviour
 
     private float distanceFromCamera = 0.8f;
     public GameObject ball;
-    [SerializeField] private EnemyProjectile enemyProjectile;
+    [SerializeField] private BallManager enemyProjectile;
     private bool isClickable;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
-        enemyProjectile = GameObject.Find("Enemy").GetComponent<EnemyProjectile>();
+        enemyProjectile = GameObject.Find("Enemy").GetComponent<BallManager>();
     }
 
     // Update is called once per frame
