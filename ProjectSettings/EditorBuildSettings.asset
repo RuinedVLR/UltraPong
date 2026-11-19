@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Bootstrap.unity
+    guid: 660f584e96215ec41a294d69d89840ae
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: df75b86d73c3d9b429af925a403acdee
   - enabled: 1
-    path: Assets/Scenes/Test_MapRandomization.unity
+    path: Assets/Scenes/Map.unity
     guid: 01bface2c8c315e44a515d3739f0406b
   - enabled: 1
     path: Assets/Scenes/FightScenes/RegularEnemies/Enemy1.unity

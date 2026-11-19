@@ -12,6 +12,9 @@ namespace Map
     {
         public static MapManager Instance { get; private set; }
 
+        [Tooltip("Scene name of the map — the canvas this script lives on is only active while this scene is loaded.")]
+        [SerializeField] private string mapSceneName = "Map";
+
         [Tooltip("Index of the last completed node. -1 means no node has been completed yet, so only node 0 can be selected.")]
         [SerializeField] private int currentNodeIndex = -1;
 
@@ -35,6 +38,25 @@ namespace Map
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // The subscription survives gameObject.SetActive(false) below, since it isn't tied to Unity's enabled state.
+            SceneManager.sceneLoaded += HandleSceneLoaded;
+            UpdateCanvasVisibility(SceneManager.GetActiveScene().name);
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
+        }
+
+        private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            UpdateCanvasVisibility(scene.name);
+        }
+
+        private void UpdateCanvasVisibility(string sceneName)
+        {
+            gameObject.SetActive(sceneName == mapSceneName);
         }
 
         /// <summary>
@@ -60,8 +82,6 @@ namespace Map
                 return false;
 
             pendingNodeIndex = nodeSequenceIndex;
-            CompletePendingNode(); // Mark the node as completed immediately for now, since we don't have a fight scene yet
-            gameObject.SetActive(false); // Deactivate MapManager while in the fight scene
             return true;
         }
 
@@ -104,10 +124,20 @@ namespace Map
             OnProgressChanged?.Invoke();
         }
 
+        /// <summary>
+        /// Directly restores progress from a save file, without the "next node" validation
+        /// used by TryCompleteNode/CompletePendingNode.
+        /// </summary>
+        public void SetProgress(int nodeIndex)
+        {
+            currentNodeIndex = nodeIndex;
+            pendingNodeIndex = -1;
+            OnProgressChanged?.Invoke();
+        }
+
         public void ReturnToMap(string mapSceneName)
         {
             SceneManager.LoadScene(mapSceneName);
-            gameObject.SetActive(true); // Reactivate MapManager when returning to the map scene
         }
     }
 }
