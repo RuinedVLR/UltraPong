@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5494054374121802540}
   - component: {fileID: 8212173791556236136}
   - component: {fileID: 1519190620885231927}
+  - component: {fileID: 8238139006407967756}
   m_Layer: 0
   m_Name: PingPongPaddle_Var1
   m_TagString: Untagged
@@ -90,3 +91,38 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8238139006407967756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 971035241167527908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c434a5805c46724b8d0ab3c0f24cb6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallManager
+  enemyPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  screenPoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  targetPoint: {fileID: 0}
+  selectedPoint: 0
+  movingToPlayer: 0
+  movingToScreen: 0
+  movingToEnemy: 0
+  enemyPos: {fileID: 0}
+  ball: {fileID: 0}
+  speed: 10
+  baseSpeed: 1
+  enemyMissChance: 0
+  missedNum: 0
