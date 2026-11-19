@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject loseCanvas;
     [SerializeField] private GameObject pauseCanvas;
-    private Canvas hudCanvas;
+    public Canvas hudCanvas;
     private TextMeshProUGUI livestext;
     private GameManager gameManager;
 
@@ -20,9 +20,6 @@ public class UIManager : MonoBehaviour
         hudCanvas = GameObject.Find("HUDcanvas").GetComponent<Canvas>();
         livestext = GameObject.Find("Livestxt").GetComponent<TextMeshProUGUI>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
-        CloseAllUI();
-        hudCanvas.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -35,20 +32,20 @@ public class UIManager : MonoBehaviour
             Unpause();
     }
 
-    void CloseAllUI()
+    public void CloseAllUI()
     {
         hudCanvas.gameObject.SetActive(false);
         loseCanvas.SetActive(false);
         pauseCanvas.SetActive(false);
     }
 
-    void Pause()
+    public void Pause()
     {
         isPaused = true;
         pauseCanvas.SetActive(true);
     }
 
-    void Unpause()
+    public void Unpause()
     {
         isPaused = false;
         pauseCanvas.SetActive(false);
@@ -57,5 +54,10 @@ public class UIManager : MonoBehaviour
     public void ShowLoseScreen()
     {
         loseCanvas.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        gameManager.RestartGame();
     }
 }

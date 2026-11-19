@@ -26,7 +26,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Test_MapRandomization");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
     }
 
     public void QuitGame()
