@@ -25,10 +25,9 @@ public class BallManager : MonoBehaviour
     public GameObject ball;
 
     //speed float could incrimentally increase as rally continues
-    public float speed = 10f;
+    public float speed = 1f;
 
     public float baseSpeed;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     [SerializeField] private int enemyMissChance = 0;
     [SerializeField] private int missedNum;
@@ -53,7 +52,10 @@ public class BallManager : MonoBehaviour
         }
 
         gameManager = GameManager.Instance;
-        matchStart = GameObject.Find("GameManager").GetComponent<MatchStart>();
+        matchStart = FindFirstObjectByType<MatchStart>();
+
+        if (matchStart == null)
+            Debug.LogError("BallManager could not find a MatchStart in the scene.");
 
         speed = baseSpeed;
     }
@@ -135,7 +137,11 @@ public class BallManager : MonoBehaviour
             movingToEnemy = false;
             movingToPlayer = false;
             movingToScreen = false;
-            matchStart.StartCoroutine(matchStart.WaitForStart());
+
+            if (matchStart != null)
+                matchStart.StartCoroutine(matchStart.WaitForStart());
+            else
+                Debug.LogError("BallManager cannot restart the rally: matchStart reference is missing.");
         }
     }
     public void OnRallyStart()

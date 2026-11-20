@@ -1,7 +1,7 @@
-using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,6 +14,11 @@ public class UIManager : MonoBehaviour
     private GameManager gameManager;
 
     public bool isPaused = false;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -43,21 +48,32 @@ public class UIManager : MonoBehaviour
     {
         isPaused = true;
         pauseCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void Unpause()
     {
         isPaused = false;
         pauseCanvas.SetActive(false);
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     public void ShowLoseScreen()
     {
         loseCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void RestartGame()
     {
         gameManager.RestartGame();
+    }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

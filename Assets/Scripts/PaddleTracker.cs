@@ -15,7 +15,7 @@ public class PaddleTracker : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
-        enemyProjectile = GameObject.Find("Enemy").GetComponent<BallManager>();
+        enemyProjectile = FindFirstObjectByType<BallManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class PaddleTracker : MonoBehaviour
 
         transform.position = mouseWorldPos;
 
-        if(isClickable == true && Input.GetMouseButtonDown(0))
+        if (isClickable == true && enemyProjectile.movingToScreen == true && Input.GetMouseButtonDown(0))
         {
             // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
             enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
@@ -40,7 +40,7 @@ public class PaddleTracker : MonoBehaviour
             enemyProjectile.movingToEnemy = true;
             enemyProjectile.movingToPlayer = false;
             enemyProjectile.movingToScreen = false;
-            
+
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -50,6 +50,11 @@ public class PaddleTracker : MonoBehaviour
         // checks if ball can be hit
         isClickable = true;
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        // prevents a stale click from the previous rally firing during the next countdown
+        isClickable = false;
     }
     private void OnCollisionEnter(Collision collision)
     {
