@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,15 +49,24 @@ public class GameManager : MonoBehaviour
         if (scene.name == mapSceneName)
             return;
 
-        if (BallManager.Instance == null)
-            return; // Not a battle scene (e.g. MainMenu) — nothing to reset/subscribe to.
-
-        BallManager.Instance.OnBallScored -= LoseState;
-        BallManager.Instance.OnBallScored += LoseState;
-
         // Entering a new level/battle scene — lives refill, but score and map progress persist.
         lives = 3;
         isRalying = true;
+
+        // sceneLoaded fires BEFORE Start() runs on the new scene's objects, so BallManager.Instance
+        // isn't set yet here. Wait a frame (by which point Start() has run) before subscribing.
+        StartCoroutine(SubscribeToBallManagerNextFrame());
+    }
+
+    private IEnumerator SubscribeToBallManagerNextFrame()
+    {
+        yield return null;
+
+        if (BallManager.Instance == null)
+            yield break; // Not a battle scene
+
+        BallManager.Instance.OnBallScored -= LoseState;
+        BallManager.Instance.OnBallScored += LoseState;
     }
 
     public void RestartGame()
@@ -70,11 +80,14 @@ public class GameManager : MonoBehaviour
 
         if (SaveManager.Instance != null)
             SaveManager.Instance.DeleteSave();
+
+        SceneManager.LoadScene(mapSceneName);
     }
 
     private void LoseState()
     {
         isRalying = false;
+        SaveManager.Instance.DeleteSave();
         UIManager.Instance.ShowLoseScreen();
     }
 }

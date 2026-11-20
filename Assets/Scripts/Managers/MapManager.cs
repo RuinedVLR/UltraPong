@@ -21,12 +21,22 @@ namespace Map
         [Tooltip("Index of the node whose battle scene is currently loaded (awaiting completion). -1 means none.")]
         [SerializeField] private int pendingNodeIndex = -1;
 
+        private string pendingSceneName;
+
         public int CurrentNodeIndex => currentNodeIndex;
+        public int PendingNodeIndex => pendingNodeIndex;
+        public string PendingSceneName => pendingSceneName;
 
         /// <summary>
         /// Raised whenever progress changes, so map nodes can refresh their availability indicators.
         /// </summary>
         public event Action OnProgressChanged;
+
+        /// <summary>
+        /// Raised when the player enters a battle (before the scene loads), with the node index and
+        /// the scene name that was rolled for it. Use this as the save point.
+        /// </summary>
+        public event Action<int, string> OnNodeEntered;
 
         private void Awake()
         {
@@ -76,12 +86,14 @@ namespace Map
         /// Call this when the player enters a node's fight scene, before loading it.
         /// Does NOT advance progress yet — progress only advances once the fight is won (see CompletePendingNode).
         /// </summary>
-        public bool EnterNode(int nodeSequenceIndex)
+        public bool EnterNode(int nodeSequenceIndex, string sceneName)
         {
             if (!CanSelectNode(nodeSequenceIndex))
                 return false;
 
             pendingNodeIndex = nodeSequenceIndex;
+            pendingSceneName = sceneName;
+            OnNodeEntered?.Invoke(pendingNodeIndex, pendingSceneName);
             return true;
         }
 
@@ -96,6 +108,7 @@ namespace Map
 
             currentNodeIndex = pendingNodeIndex;
             pendingNodeIndex = -1;
+            pendingSceneName = null;
             OnProgressChanged?.Invoke();
             return true;
         }
@@ -121,17 +134,19 @@ namespace Map
         {
             currentNodeIndex = -1;
             pendingNodeIndex = -1;
+            pendingSceneName = null;
             OnProgressChanged?.Invoke();
         }
 
         /// <summary>
         /// Directly restores progress from a save file, without the "next node" validation
-        /// used by TryCompleteNode/CompletePendingNode.
+        /// used by TryCompleteNode/CompletePendingNode. Also restores a pending (unfinished) battle, if any.
         /// </summary>
-        public void SetProgress(int nodeIndex)
+        public void SetProgress(int nodeIndex, int pendingIndex = -1, string pendingScene = null)
         {
             currentNodeIndex = nodeIndex;
-            pendingNodeIndex = -1;
+            pendingNodeIndex = pendingIndex;
+            pendingSceneName = pendingScene;
             OnProgressChanged?.Invoke();
         }
 
