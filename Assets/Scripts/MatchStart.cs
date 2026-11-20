@@ -14,8 +14,7 @@ public class MatchStart : MonoBehaviour
 
     private void Start()
     {
-        if (gameObject != null) DontDestroyOnLoad(gameObject);
-        enemyProjectile = GameObject.Find("Enemy").GetComponent<BallManager>();
+        enemyProjectile = FindFirstObjectByType<BallManager>();
 
         StartCoroutine(WaitForStart());
     }
@@ -39,7 +38,6 @@ public class MatchStart : MonoBehaviour
         yield return new WaitForSeconds(1);
         countText.enabled = false;
         enemyProjectile.OnRallyStart();
-        
     }
 
 }

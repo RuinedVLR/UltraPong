@@ -3,6 +3,7 @@ using System.IO;
 using Map;
 using SaveSystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Persists the run's progress (map position + acquired upgrades) to disk as JSON,
@@ -49,7 +50,7 @@ public class SaveManager : MonoBehaviour
         while (MapManager.Instance == null || UpgradeManager.Instance == null)
             yield return null;
 
-        MapManager.Instance.SetProgress(Data.currentNodeIndex);
+        MapManager.Instance.SetProgress(Data.currentNodeIndex, Data.pendingNodeIndex, Data.pendingSceneName);
         UpgradeManager.Instance.RestoreUpgrades(Data.acquiredUpgradeNames);
 
         SubscribeToManagers();
@@ -63,33 +64,38 @@ public class SaveManager : MonoBehaviour
     private void OnDisable()
     {
         if (MapManager.Instance != null)
-            MapManager.Instance.OnProgressChanged -= HandleMapProgressChanged;
+            MapManager.Instance.OnNodeEntered -= HandleNodeEntered;
     }
 
     private void SubscribeToManagers()
     {
         if (MapManager.Instance != null)
         {
-            MapManager.Instance.OnProgressChanged -= HandleMapProgressChanged;
-            MapManager.Instance.OnProgressChanged += HandleMapProgressChanged;
+            MapManager.Instance.OnNodeEntered -= HandleNodeEntered;
+            MapManager.Instance.OnNodeEntered += HandleNodeEntered;
         }
     }
 
-    private void HandleMapProgressChanged()
+    /// <summary>
+    /// The only autosave trigger: entering a new battle. Captures map progress, the battle that was
+    /// just entered, and every upgrade acquired so far.
+    /// </summary>
+    private void HandleNodeEntered(int nodeIndex, string sceneName)
     {
         Data.currentNodeIndex = MapManager.Instance.CurrentNodeIndex;
+        Data.pendingNodeIndex = nodeIndex;
+        Data.pendingSceneName = sceneName;
         Save();
     }
 
     /// <summary>
-    /// Call this whenever an upgrade is acquired, so it gets persisted immediately.
+    /// Records that an upgrade was acquired. Does NOT save immediately — it gets persisted the next
+    /// time the player enters a battle (see HandleNodeEntered).
     /// </summary>
     public void RecordUpgradeAcquired(string upgradeName)
     {
         if (!Data.acquiredUpgradeNames.Contains(upgradeName))
             Data.acquiredUpgradeNames.Add(upgradeName);
-
-        Save();
     }
 
     public void Save()
@@ -127,4 +133,20 @@ public class SaveManager : MonoBehaviour
     }
 
     public bool HasSave => Data != null && Data.hasSave;
+
+    /// <summary>
+    /// Call this from the main menu's "Continue" button. If a battle was in progress when the game
+    /// was last saved, loads that same battle scene directly (fresh lives/rally, as if just entered).
+    /// Otherwise falls back to the map scene.
+    /// </summary>
+    public void ContinueGame(string mapSceneName)
+    {
+        if (!HasSave)
+            return;
+
+        if (!string.IsNullOrEmpty(Data.pendingSceneName))
+            SceneManager.LoadScene(Data.pendingSceneName);
+        else
+            SceneManager.LoadScene(mapSceneName);
+    }
 }
