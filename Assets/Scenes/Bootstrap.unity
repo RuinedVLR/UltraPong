@@ -2290,9 +2290,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 117247465719295116, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7106594679596949991, guid: 22cec34de4b433d448cd370475ee646d, type: 2}
+    - target: {fileID: 117247465719295116, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 320889927503931141, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 381507224978280237, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7106594679596949991, guid: 22cec34de4b433d448cd370475ee646d, type: 2}
+    - target: {fileID: 381507224978280237, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 542756717252489484, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: tutorialPanel
@@ -2393,6 +2409,14 @@ PrefabInstance:
     - target: {fileID: 2461371151141853572, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -131
+      objectReference: {fileID: 0}
+    - target: {fileID: 2624136742739567507, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7106594679596949991, guid: 22cec34de4b433d448cd370475ee646d, type: 2}
+    - target: {fileID: 2624136742739567507, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2662050401074351032, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2518,6 +2542,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -144.26
       objectReference: {fileID: 0}
+    - target: {fileID: 6725234270488987530, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7106594679596949991, guid: 22cec34de4b433d448cd370475ee646d, type: 2}
+    - target: {fileID: 6725234270488987530, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6953022449848503500, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: m_SizeDelta.x
       value: 377.4177
@@ -2553,6 +2585,14 @@ PrefabInstance:
     - target: {fileID: 8246384507631762066, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -239.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 9039670649244072336, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7106594679596949991, guid: 22cec34de4b433d448cd370475ee646d, type: 2}
+    - target: {fileID: 9039670649244072336, guid: 5338a0f2e5120744c8f14d476c40a1c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3230,7 +3270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   mapSceneName: Map
-  database: {fileID: 11400000, guid: fddce61b54dd25c4cb20534a60a0f6d8, type: 2}
+  database: {fileID: 0}
   raritySettings:
   - Rarity: 0
     Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0}

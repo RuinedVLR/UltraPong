@@ -307,6 +307,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UltraPong_UI_9
+      rect:
+        serializedVersion: 2
+        x: 773
+        y: 818
+        width: 239
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e282b7a7672827c4d894603371930850
+      internalID: -2032417314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -332,6 +354,7 @@ TextureImporter:
       UltraPong_UI_6: 93784078
       UltraPong_UI_7: 2013995904
       UltraPong_UI_8: 107069507
+      UltraPong_UI_9: -2032417314
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
