@@ -24,8 +24,9 @@ public class UpgradeCardUI : MonoBehaviour
         title.text = data.UpgradeName;
         description.text = data.Description;
 
-        rarityBorder.color =
-            UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color;
+        var rarityColor = UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color;
+        rarityColor.a = 1f;
+        rarityBorder.color = rarityColor;
 
         if (valueChangeText != null)
             valueChangeText.text = BuildValueChangeText(data);
