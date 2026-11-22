@@ -312,7 +312,7 @@ public class UIManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(mainMenuSceneName);
         Time.timeScale = 1f; // Reset time scale in case it was paused
+        SceneManager.LoadScene(mainMenuSceneName);
     }
 }
