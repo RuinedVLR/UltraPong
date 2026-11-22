@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -130,20 +131,39 @@ public class BallManager : MonoBehaviour
         if (Vector3.Distance(ball.transform.position, screenPoint[selectedPoint].position) <= 0.2f)
         {
             gameManager.lives -= 1;
-            if (gameManager.lives <= 0)
-                OnBallScored.Invoke();
             speed = baseSpeed;
             ball.transform.position = enemyPos.position;
             movingToEnemy = false;
             movingToPlayer = false;
             movingToScreen = false;
 
+            StartCoroutine(EndOfRallyRoutine());
+        }
+    }
+
+    private IEnumerator EndOfRallyRoutine()
+    {
+        gameManager.CommitPendingScore();
+
+        yield return new WaitForSeconds(2f);
+
+        if (gameManager.HasReachedScoreTarget())
+        {
+            gameManager.CompleteLevel();
+        }
+        else if (gameManager.lives <= 0)
+        {
+            OnBallScored?.Invoke();
+        }
+        else
+        {
             if (matchStart != null)
                 matchStart.StartCoroutine(matchStart.WaitForStart());
             else
                 Debug.LogError("BallManager cannot restart the rally: matchStart reference is missing.");
         }
     }
+
     public void OnRallyStart()
     {
         //placeholder method to start rally 

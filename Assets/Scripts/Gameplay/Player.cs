@@ -4,7 +4,8 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-    public int scoreGain = 100;
+    // Bonus score-per-hit granted by upgrades only. Starts at 0 — the base 100 pts/hit
+    public int scoreGain = 0;
     public float scoreMultiplier = 1.0f;
 
     private void Awake()
