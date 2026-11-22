@@ -6,6 +6,8 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
 
+    public UpgradeContext Context => context;
+
     [Tooltip("Scene name of the map — these references are not re-acquired there")]
     [SerializeField] private string mapSceneName = "Map";
 
@@ -151,6 +153,14 @@ public class UpgradeManager : MonoBehaviour
             if (!acquiredUpgradeNames.Contains(upgradeName))
                 acquiredUpgradeNames.Add(upgradeName);
         }
+    }
+
+    /// <summary>
+    /// Clears every acquired upgrade, e.g. when starting a brand new run.
+    /// </summary>
+    public void ResetUpgrades()
+    {
+        acquiredUpgradeNames.Clear();
     }
 }
 

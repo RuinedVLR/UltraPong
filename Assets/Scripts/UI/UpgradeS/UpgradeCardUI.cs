@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,12 +9,13 @@ public class UpgradeCardUI : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private TMP_Text title;
     [SerializeField] private TMP_Text description;
+    [SerializeField] private TMP_Text valueChangeText;
     [SerializeField] private Image rarityBorder;
 
     private UpgradeData upgrade;
-    private System.Action onSelected;
+    private Action onSelected;
 
-    public void Setup(UpgradeData data, System.Action onSelected)
+    public void Setup(UpgradeData data, Action onSelected)
     {
         upgrade = data;
         this.onSelected = onSelected;
@@ -23,11 +26,24 @@ public class UpgradeCardUI : MonoBehaviour
 
         rarityBorder.color =
             UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color;
-        rarityBorder.color = new Color(
-            UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color.r,
-            UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color.g,
-            UpgradeManager.Instance.GetRaritySettings(data.Rarity).Color.b, 
-            1f);
+
+        if (valueChangeText != null)
+            valueChangeText.text = BuildValueChangeText(data);
+    }
+
+    private string BuildValueChangeText(UpgradeData data)
+    {
+        var context = UpgradeManager.Instance.Context;
+        var lines = new List<string>();
+
+        foreach (var effect in data.Effects)
+        {
+            string preview = effect.GetPreviewText(context);
+            if (!string.IsNullOrEmpty(preview))
+                lines.Add(preview);
+        }
+
+        return string.Join("\n", lines);
     }
 
     public void Select()

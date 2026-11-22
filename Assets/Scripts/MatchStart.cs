@@ -1,35 +1,52 @@
 using System.Collections;
-using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MatchStart : MonoBehaviour
 {
+    [SerializeField] private string countTextName = "CountdownText";
+
     private BallManager enemyProjectile;
-    public TextMeshProUGUI countText;
+    private TextMeshProUGUI countText;
     public float countFloat = 4f;
     private int countInt;
 
     private void Start()
     {
         enemyProjectile = FindFirstObjectByType<BallManager>();
+        countText = FindCountText();
 
         StartCoroutine(WaitForStart());
     }
 
+    private TextMeshProUGUI FindCountText()
+    {
+        var obj = GameObject.Find(countTextName);
+
+        if (obj == null)
+        {
+            Debug.LogError($"MatchStart could not find a GameObject named '{countTextName}' in the scene.");
+            return null;
+        }
+
+        return obj.GetComponent<TextMeshProUGUI>();
+    }
 
     private void Update()
     {
+        if (countText == null) return;
         if (countFloat <= 1.2) return;
+
         countFloat -= Time.deltaTime;
         countInt = (int)countFloat;
         countText.text = countInt.ToString();
     }
 
-     public IEnumerator WaitForStart()
+    public IEnumerator WaitForStart()
     {
+        if (countText == null)
+            yield break;
+
         countText.enabled = true;
         countFloat = 4f;
         yield return new WaitForSeconds(3);
@@ -39,5 +56,4 @@ public class MatchStart : MonoBehaviour
         countText.enabled = false;
         enemyProjectile.OnRallyStart();
     }
-
 }
