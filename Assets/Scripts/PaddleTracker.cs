@@ -9,6 +9,7 @@ public class PaddleTracker : MonoBehaviour
     private float distanceFromCamera = 0.8f;
     public GameObject ball;
     [SerializeField] private BallManager enemyProjectile;
+    [SerializeField] private int baseScoreGain = 100;
     private bool isClickable;
     void Start()
     {
@@ -32,15 +33,15 @@ public class PaddleTracker : MonoBehaviour
 
         if (isClickable == true && enemyProjectile.movingToScreen == true && Input.GetMouseButtonDown(0))
         {
-            // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
-            enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
-            Debug.Log("clicked");
+            enemyProjectile.selectedPoint = Random.Range(0, enemyProjectile.playerPoint.Length);
             isClickable = false;
             enemyProjectile.targetPoint = enemyProjectile.playerPoint[enemyProjectile.selectedPoint];
             enemyProjectile.movingToEnemy = true;
             enemyProjectile.movingToPlayer = false;
             enemyProjectile.movingToScreen = false;
 
+            int gained = Mathf.RoundToInt((baseScoreGain + Player.Instance.scoreGain) * Player.Instance.scoreMultiplier);
+            GameManager.Instance.AddScore(gained);
         }
     }
     private void OnTriggerEnter(Collider other)

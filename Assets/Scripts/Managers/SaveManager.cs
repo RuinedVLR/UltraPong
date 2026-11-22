@@ -130,6 +130,9 @@ public class SaveManager : MonoBehaviour
 
         if (MapManager.Instance != null)
             MapManager.Instance.ResetRun();
+
+        if (UpgradeManager.Instance != null)
+            UpgradeManager.Instance.ResetUpgrades();
     }
 
     public bool HasSave => Data != null && Data.hasSave;
