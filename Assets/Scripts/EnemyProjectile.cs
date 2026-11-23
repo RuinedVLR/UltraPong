@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class EnemyProjectile : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour
     public Transform[] enemyPoint;
     public Transform[] playerPoint;
     public Transform[] screenPoint;
+    public Transform[] enemyScreenPoint;
     public Transform targetPoint;
 
     // the currently randomly selected number that correlates to a position in the list
@@ -26,9 +28,11 @@ public class EnemyProjectile : MonoBehaviour
 
     public float baseSpeed;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [Range(0f, 100f)]
+    [SerializeField]private float enemyMissChance = 90f;
 
-    [SerializeField]private int enemyMissChance = 0;
-    [SerializeField]private int missedNum;
+    //higher number means miss chance increases slower
+    [SerializeField] private float enemyMissScaling;
 
     private int roundsGone;
 
@@ -79,33 +83,43 @@ public class EnemyProjectile : MonoBehaviour
     }
     public void MoveTowardsEnemy()
     {
+
         // moves ball towards point on players side of the table before returning to the enemies position
         ball.transform.position = Vector3.MoveTowards(ball.transform.position, targetPoint.position, speed * Time.deltaTime);
         if(Vector3.Distance(ball.transform.position, playerPoint[selectedPoint].position) <= 0.2f)
         {
-            targetPoint = enemyPos;
+            selectedPoint = Random.Range(0, enemyScreenPoint.Length);
+            targetPoint = enemyScreenPoint[selectedPoint];
+  
+
         }
-        if(Vector3.Distance(ball.transform.position, enemyPos.position) <= 0.2f)
+        if(Vector3.Distance(ball.transform.position, enemyScreenPoint[selectedPoint].position) <= 0.2f)
         {
             roundsGone += 1;
-            enemyMissChance = roundsGone * ((int)speed) / 2;
-            if(enemyMissChance >= 100)
+            enemyMissChance += roundsGone * speed / enemyMissScaling;
+            if (MissChance(enemyMissChance))
             {
-                enemyMissChance = 100;
-            }
-            missedNum = Random.Range(enemyMissChance, 101);
+                movingToEnemy = false;
+                movingToPlayer = false;
+                movingToScreen = false;
 
-            if(missedNum == enemyMissChance)
-            {
-                // rally win score multi here, start new rally
-                return;
+                // add win rally multi here
+                // have a missed hit keyframe for enemy keyframes will be added to a list and matched up with [selectedpoint]
+
+                matchStart.StartCoroutine(matchStart.WaitForStart());
             }
+
             else
-            movingToEnemy = false;
-            movingToScreen = false;
-            movingToPlayer = true;
-            speed += .2f;
+            {
+                // have an enemy hit ball keyframe same logic as with above
+                movingToEnemy = false;
+                movingToScreen = false;
+                movingToPlayer = true;
+                speed += .2f;
+            }
+
             
+
         }
 
   
@@ -119,6 +133,8 @@ public class EnemyProjectile : MonoBehaviour
         {
             gameManager.lives -= 1;
             speed = baseSpeed;
+            roundsGone = 0;
+            enemyMissChance = 0;
             ball.transform.position = enemyPos.position;
             movingToEnemy = false;
             movingToPlayer = false;
@@ -133,5 +149,13 @@ public class EnemyProjectile : MonoBehaviour
         movingToPlayer = true;
         
 
+    }
+
+    public bool MissChance(float chance)
+    {
+        if (chance <= 0f) return false;
+        if (chance >= 100f) return true;
+
+        return Random.Range(0f, 100f) < chance;
     }
 }
