@@ -102,7 +102,9 @@ public class EnemyProjectile : MonoBehaviour
                 movingToEnemy = false;
                 movingToPlayer = false;
                 movingToScreen = false;
-
+                enemyMissChance = 0;
+                roundsGone = 0;
+                speed = baseSpeed;
                 // add win rally multi here
                 // have a missed hit keyframe for enemy keyframes will be added to a list and matched up with [selectedpoint]
 
