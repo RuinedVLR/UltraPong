@@ -397,7 +397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.328
+      value: 1.609
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalRotation.w
@@ -808,6 +808,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5494054374121802540, guid: 9c2de3e6a40f53144b9f92f472a1c35f, type: 3}
   m_PrefabInstance: {fileID: 112059222}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &612947410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612947408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c56435bd0525d4c4aa2e138b6383a3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  enemyPoint:
+  - {fileID: 316515307}
+  - {fileID: 1916918839}
+  - {fileID: 1561987079}
+  playerPoint:
+  - {fileID: 1073953763}
+  - {fileID: 1021308964}
+  - {fileID: 822641725}
+  screenPoint:
+  - {fileID: 159377364}
+  - {fileID: 1256347717}
+  - {fileID: 1061028604}
+  targetPoint: {fileID: 0}
+  selectedPoint: 0
+  movingToPlayer: 0
+  movingToScreen: 0
+  movingToEnemy: 0
+  enemyPos: {fileID: 612947409}
+  ball: {fileID: 986447929}
+  speed: 1
+  baseSpeed: 1
+  enemyMissChance: 0
+
 --- !u!1001 &618680068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1695,7 +1730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.307
+      value: 1.593
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2061,7 +2096,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.345
+      value: 1.627
       objectReference: {fileID: 0}
     - target: {fileID: 8887700273689205762, guid: 117b099b2dd910942bf9a9d47109f340, type: 3}
       propertyPath: m_LocalRotation.w
