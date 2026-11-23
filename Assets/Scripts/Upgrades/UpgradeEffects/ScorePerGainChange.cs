@@ -7,6 +7,9 @@ public class ScorePerGainChange : UpgradeEffectData
 
     public override void Apply(UpgradeContext context)
     {
+        if (context?.Player == null)
+            return;
+
         context.Player.scoreGain += scoreGainChange;
     }
 
