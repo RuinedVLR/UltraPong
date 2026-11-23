@@ -6,11 +6,6 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance;
 
-    public UpgradeContext Context => context;
-
-    [Tooltip("Scene name of the map — these references are not re-acquired there")]
-    [SerializeField] private string mapSceneName = "Map";
-
     private Player player;
     private BallManager ballManager;
     private Paddle paddle;
@@ -23,6 +18,8 @@ public class UpgradeManager : MonoBehaviour
     private readonly List<string> acquiredUpgradeNames = new();
 
     private UpgradeContext context;
+
+    public UpgradeContext Context => context;
 
     private void Awake()
     {
@@ -47,15 +44,18 @@ public class UpgradeManager : MonoBehaviour
 
     private void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == mapSceneName)
-            return;
-
         if (!RebindSceneReferences())
-            return; // Not a battle scene (e.g. MainMenu) — nothing to do here.
+            return; // Not a battle scene (MainMenu, Map, ...) — nothing to do here.
 
         ReapplyAcquiredUpgrades();
     }
 
+    /// <summary>
+    /// Looks for Player/BallManager/Paddle in the just-loaded scene. Returns false (silently)
+    /// if none of them exist — that means this isn't a battle scene at all (MainMenu, Map, etc.),
+    /// which is expected and not an error.
+    /// If some but not all are found, logs a warning — that indicates a misconfigured battle scene.
+    /// </summary>
     private bool RebindSceneReferences()
     {
         player = FindFirstObjectByType<Player>();
@@ -63,8 +63,9 @@ public class UpgradeManager : MonoBehaviour
         paddle = FindFirstObjectByType<Paddle>();
         upgradePanel = FindFirstObjectByType<UpgradePanel>(FindObjectsInactive.Include);
 
-        if (player == null && ballManager == null && paddle == null && upgradePanel == null)
-            return false; // None found — this isn't a battle scene at all.
+        bool anyFound = player != null || ballManager != null || paddle != null;
+        if (!anyFound)
+            return false;
 
         context = new UpgradeContext
         {
@@ -73,8 +74,9 @@ public class UpgradeManager : MonoBehaviour
             Paddle = paddle
         };
 
-        if (player == null || ballManager == null || paddle == null || upgradePanel == null)
-            Debug.LogWarning("UpgradeManager could not find all required scene references (Player/BallManager/Paddle/UpgradePanel) in the loaded battle scene.");
+        bool allFound = player != null && ballManager != null && paddle != null;
+        if (!allFound)
+            Debug.LogWarning("UpgradeManager found some but not all required scene references (Player/BallManager/Paddle) in the loaded scene — check that this battle scene is set up correctly.");
 
         return true;
     }
