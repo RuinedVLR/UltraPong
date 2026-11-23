@@ -3274,7 +3274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
   mapSceneName: Map
-  database: {fileID: 0}
+  database: {fileID: 11400000, guid: fddce61b54dd25c4cb20534a60a0f6d8, type: 2}
   raritySettings:
   - Rarity: 0
     Color: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 0}
