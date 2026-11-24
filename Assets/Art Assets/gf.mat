@@ -23,13 +23,13 @@ Material:
   m_Name: gf
   m_Shader: {fileID: -6465566751694194690, guid: f4f5d12c1f002de41991bc8fd3b1af65, type: 3}
   m_Parent: {fileID: 2100000, guid: 02c1006cdff0d644f9f7d7e9da73fec9, type: 2}
-  m_ModifiedSerializedProperties: 0
+  m_ModifiedSerializedProperties: 16
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap:
     RenderType: Opaque
   disabledShaderPasses:
@@ -41,6 +41,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Crossdensity: 20
-    m_Colors: []
+    - _DstBlend: 0
+    - _DstBlendAlpha: 0
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _HatchingColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
