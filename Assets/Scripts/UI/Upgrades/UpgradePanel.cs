@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,19 +21,23 @@ public class UpgradePanel : MonoBehaviour
         {
             var cardObj = Instantiate(cardPrefab, cardsContainer);
             var card = cardObj.GetComponent<UpgradeCardUI>();
-            card.Setup(upgrade, Hide);
+            card.Setup(upgrade, HandleUpgradeSelected);
             spawnedCards.Add(card);
         }
 
         gameObject.SetActive(true);
-        Time.timeScale = 0f;
+    }
+
+    private void HandleUpgradeSelected()
+    {
+        Hide();
+        GameManager.Instance.OnUpgradeChosenContinue();
     }
 
     public void Hide()
     {
         Clear();
         gameObject.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     private void Clear()
