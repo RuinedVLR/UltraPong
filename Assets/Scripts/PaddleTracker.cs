@@ -8,14 +8,15 @@ public class PaddleTracker : MonoBehaviour
 
     private float distanceFromCamera = 0.8f;
     public GameObject ball;
-    [SerializeField] private EnemyProjectile enemyProjectile;
+    [SerializeField] private BallManager enemyProjectile;
+    [SerializeField] private int baseScoreGain = 100;
     private bool isClickable;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
-        enemyProjectile = GameObject.Find("Enemy").GetComponent<EnemyProjectile>();
+        enemyProjectile = FindFirstObjectByType<BallManager>();
     }
 
     // Update is called once per frame
@@ -30,17 +31,17 @@ public class PaddleTracker : MonoBehaviour
 
         transform.position = mouseWorldPos;
 
-        if(isClickable == true && Input.GetMouseButtonDown(0))
+        if (isClickable == true && enemyProjectile.movingToScreen == true && Input.GetMouseButtonDown(0))
         {
-            // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
-            enemyProjectile.selectedPoint = Random.Range(0,enemyProjectile.playerPoint.Length);
-            Debug.Log("clicked");
+            enemyProjectile.selectedPoint = Random.Range(0, enemyProjectile.playerPoint.Length);
             isClickable = false;
             enemyProjectile.targetPoint = enemyProjectile.playerPoint[enemyProjectile.selectedPoint];
             enemyProjectile.movingToEnemy = true;
             enemyProjectile.movingToPlayer = false;
             enemyProjectile.movingToScreen = false;
-            
+
+            int gained = Mathf.RoundToInt((baseScoreGain + Player.Instance.scoreGain) * Player.Instance.scoreMultiplier);
+            GameManager.Instance.AddScore(gained);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -50,6 +51,11 @@ public class PaddleTracker : MonoBehaviour
         // checks if ball can be hit
         isClickable = true;
 
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        // prevents a stale click from the previous rally firing during the next countdown
+        isClickable = false;
     }
     private void OnCollisionEnter(Collision collision)
     {

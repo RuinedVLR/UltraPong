@@ -95,7 +95,7 @@ namespace Map
 
             // Progress only advances once the battle is won — call MapManager.Instance.CompletePendingNode()
             // from your gameplay code (e.g. on victory) before returning to the map scene.
-            MapManager.Instance.EnterNode(sequenceIndex);
+            MapManager.Instance.EnterNode(sequenceIndex, sceneName);
             SceneManager.LoadScene(sceneName);
         }
 
