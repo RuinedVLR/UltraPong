@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/FightScenes/RegularEnemies/Enemy3.unity.meta
 guid: 3f0f7fb101270214b93cfa5c345b8e97
+========
+guid: fb0dfa675d03c0b4c9d0575e325e51b9
+>>>>>>>> 63b7be380c75e49e69c2c2ed66e4f61a3fab07ce:Assets/Scenes/FightScenes/RegularEnemies/Enemy2.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ public class PaddleTracker : MonoBehaviour
     [SerializeField] private BallManager enemyProjectile;
     [SerializeField] private int baseScoreGain = 100;
     private bool isClickable;
+    private bool isOnCooldown;
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -31,17 +33,27 @@ public class PaddleTracker : MonoBehaviour
 
         transform.position = mouseWorldPos;
 
-        if (isClickable == true && enemyProjectile.movingToScreen == true && Input.GetMouseButtonDown(0))
+        if (isClickable == false && Input.GetMouseButtonDown(0) && isOnCooldown == false)
         {
+            //starts cooldown period if swung with no ball in range
+            StartCoroutine(ClickCooldown());
+        }
+        else if (isClickable == false && Input.GetMouseButtonDown(0) && isOnCooldown == true)
+        {
+            Debug.Log("On cooldown!");
+            // have a message display in game or visual to indicate paddle swings on cooldown
+        }
+        else if (isClickable == true && enemyProjectile.movingToScreen == true && Input.GetMouseButtonDown(0) && isOnCooldown == false)
+        {
+            // gets new random position on the table player side. the moving to enemy bool triggers the MoveTowardsEnemy method
             enemyProjectile.selectedPoint = Random.Range(0, enemyProjectile.playerPoint.Length);
+            Debug.Log("clicked");
             isClickable = false;
             enemyProjectile.targetPoint = enemyProjectile.playerPoint[enemyProjectile.selectedPoint];
             enemyProjectile.movingToEnemy = true;
             enemyProjectile.movingToPlayer = false;
             enemyProjectile.movingToScreen = false;
 
-            int gained = Mathf.RoundToInt((baseScoreGain + Player.Instance.scoreGain) * Player.Instance.scoreMultiplier);
-            GameManager.Instance.AddScore(gained);
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -60,5 +72,12 @@ public class PaddleTracker : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
+    }
+
+    private IEnumerator ClickCooldown()
+    {
+        isOnCooldown = true;
+        yield return new WaitForSeconds(2);
+        isOnCooldown = false;
     }
 }
