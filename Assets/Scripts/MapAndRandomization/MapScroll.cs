@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 namespace Map
 {
@@ -20,14 +21,18 @@ namespace Map
         private bool dragging;
         [SerializeField] private Camera mainCamera;
 
+        private string bootstrapSceneName = "Bootstrap";
+
         private void Awake()
         {
-            EnsureCamera();
+            if(SceneManager.GetActiveScene().name != bootstrapSceneName)
+                EnsureCamera();
         }
 
         private void OnEnable()
         {
-            EnsureCamera();
+            if (SceneManager.GetActiveScene().name != bootstrapSceneName)
+                EnsureCamera();
         }
 
         private void EnsureCamera()
@@ -35,7 +40,7 @@ namespace Map
             if (mainCamera == null)
                 mainCamera = Camera.main;
 
-            if (mainCamera == null)
+            if (mainCamera == null && UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != bootstrapSceneName)
             {
                 Debug.LogError("MapScroll could not find a camera (Camera.main is null).");
                 return;

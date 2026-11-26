@@ -54,6 +54,8 @@ public class PaddleTracker : MonoBehaviour
             enemyProjectile.movingToPlayer = false;
             enemyProjectile.movingToScreen = false;
 
+            int gained = Mathf.RoundToInt((baseScoreGain + Player.Instance.scoreGain) * Player.Instance.scoreMultiplier);
+            GameManager.Instance.AddScore(gained);
         }
     }
     private void OnTriggerEnter(Collider other)
