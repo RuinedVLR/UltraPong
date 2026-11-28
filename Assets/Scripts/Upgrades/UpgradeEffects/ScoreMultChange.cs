@@ -7,6 +7,16 @@ public class ScoreMultChange : UpgradeEffectData
 
     public override void Apply(UpgradeContext context)
     {
+        if (context?.Player == null)
+            return;
+
         context.Player.scoreMultiplier += scoreMultChange;
+    }
+
+    public override string GetPreviewText(UpgradeContext context)
+    {
+        float current = context?.Player != null ? context.Player.scoreMultiplier : 1f;
+        float next = current + scoreMultChange;
+        return $"Score Multiplier: {current:0.##}x -> {next:0.##}x";
     }
 }
