@@ -109,8 +109,9 @@ public class UpgradeManager : MonoBehaviour
             effect.Apply(context);
         }
 
-        if (!acquiredUpgradeNames.Contains(upgrade.name))
-            acquiredUpgradeNames.Add(upgrade.name);
+        // Allow duplicates: each entry represents one actual pick, so ReapplyAcquiredUpgrades
+        // can correctly re-stack the upgrade the same number of times across scenes.
+        acquiredUpgradeNames.Add(upgrade.name);
 
         if (SaveManager.Instance != null)
             SaveManager.Instance.RecordUpgradeAcquired(upgrade.name);
@@ -150,11 +151,7 @@ public class UpgradeManager : MonoBehaviour
         if (upgradeNames == null)
             return;
 
-        foreach (var upgradeName in upgradeNames)
-        {
-            if (!acquiredUpgradeNames.Contains(upgradeName))
-                acquiredUpgradeNames.Add(upgradeName);
-        }
+        acquiredUpgradeNames.AddRange(upgradeNames);
     }
 
     /// <summary>

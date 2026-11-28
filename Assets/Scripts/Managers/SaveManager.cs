@@ -94,8 +94,7 @@ public class SaveManager : MonoBehaviour
     /// </summary>
     public void RecordUpgradeAcquired(string upgradeName)
     {
-        if (!Data.acquiredUpgradeNames.Contains(upgradeName))
-            Data.acquiredUpgradeNames.Add(upgradeName);
+        Data.acquiredUpgradeNames.Add(upgradeName);
     }
 
     public void Save()
